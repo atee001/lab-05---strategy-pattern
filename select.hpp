@@ -2,7 +2,8 @@
 #define __SELECT_HPP__
 
 #include <cstring>
-
+using namespace std;
+#include <string>
 class Select
 {
 public:
@@ -38,10 +39,6 @@ public:
     virtual bool select(const std::string& s) const = 0;
 };
 
-
-#endif //__SELECT_HPP
-
-
 class Select_Contains : public Select_Column{
 
 private:
@@ -58,7 +55,7 @@ public:
 
   }
 
-  bool select(const Spreadsheet* sheet, const string& s){
+  bool select(const Spreadsheet* sheet, int row){
 	
 	return column != -1 && (sheet->cell_data(row, column)).find(str) != std::string::npos;
   }
