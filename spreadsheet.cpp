@@ -44,7 +44,7 @@ int Spreadsheet::get_column_by_name(const std::string& name) const
 
 void print_selection(ostream& out) const){
 	
-f(select == nullptr){
+if(select == nullptr){
     for(auto it : data){
       for(auto jt : it){
         out << jt << " ";
