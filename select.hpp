@@ -39,6 +39,34 @@ public:
 };
 
 
+#endif //__SELECT_HPP
+
+
+class Select_Contains : public Select_Column{
+
+private:
+
+  string str;
+
+public:
+
+  Select_Contains(const Spreadsheet* sheet, const string& name, const string& str){
+
+    column = sheet->get_column_by_name(name);
+
+    this->str = str;
+
+  }
+
+  bool select(const Spreadsheet* sheet, const string& s){
+	
+	return column != -1 && (sheet->cell_data(row, column)).find(str) != std::string::npos;
+  }
+
+
+};
+
+
 
 class Select_And: public Select {
 	
@@ -99,3 +127,4 @@ class Select_Or: public Select {
 
 
 #endif //__SELECT_HPP__
+
