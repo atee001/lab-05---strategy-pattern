@@ -124,6 +124,27 @@ class Select_Or: public Select {
 		}
 };
 
+class Select_Not : public Select{
+
+private:
+  Select* one;
+
+public:
+  ~Select_Not() {
+    delete one;
+  }
+
+  Select_Not(Select* one) {
+    this->one = one;
+  }
+
+  bool select(const Spreadsheet* sheet, int row) const {
+
+    return !one->select(sheet,row)
+
+  }
+
+};
 
 
 #endif //__SELECT_HPP__
