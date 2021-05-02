@@ -38,4 +38,42 @@ public:
     virtual bool select(const std::string& s) const = 0;
 };
 
-#endif //__SELECT_HPP__
+#endif //__SELECT_HPP
+
+
+class Select_Contains : public Select_Column{
+
+private:
+
+  string str;
+
+public:
+
+  Select_Contains(const Spreadsheet* sheet, const string& name, const string& str){
+
+    column = sheet->get_column_by_name(name);
+
+    this->str = str;
+
+  }
+
+  bool select(const Spreadsheet* sheet, const string& s){
+
+    if(column == -1) return false;
+
+    for(auto it : sheet->data){ //rows
+
+      for(auto jt : it->data.at(column)){ //column
+
+        if(jt.find(s) != std::string::npos) return true;
+
+      }
+    }
+   
+    return false;
+
+  }
+
+
+};
+__
