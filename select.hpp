@@ -38,6 +38,7 @@ public:
     virtual bool select(const std::string& s) const = 0;
 };
 
+
 #endif //__SELECT_HPP
 
 
@@ -64,4 +65,66 @@ public:
 
 
 };
-__
+
+
+
+class Select_And: public Select {
+	
+	private:
+		Select* l;
+		Select* r;
+
+	public:
+
+		~Select_And() {
+			delete l;
+			delete r;
+		}
+
+		Select_And(Select* left, Select* right) {
+			l = left;
+			r = right;
+		}
+
+		bool select(const Spreadsheet* sheet, int row) const {
+			if(l->select(sheet, row) && r->select(sheet, row)) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+
+};
+
+class Select_Or: public Select {
+	
+	private:
+		Select* l;
+		Select* r;
+
+	public: 
+		~Select_Or() {
+			delete l;
+			delete r;
+		}
+
+		Select_Or(Select* left, Select* right) {
+			l = left;
+			r = right;
+		}
+
+		bool select(const Spreadsheet* sheet, int row) const {
+			if(l->select(sheet, row) || r->select(sheet, row)) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+};
+
+
+
+#endif //__SELECT_HPP__
+
