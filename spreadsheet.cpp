@@ -42,7 +42,7 @@ int Spreadsheet::get_column_by_name(const std::string& name) const
 }
 
 
-void print_selection(ostream& out) const){
+void Spreadsheet::print_selection(ostream& out) const{
 	
 if(select == nullptr){
     for(auto it : data){

@@ -39,11 +39,13 @@ public:
     virtual bool select(const std::string& s) const = 0;
 };
 
-class Select_Contains : public Select_Column{
+class Select_Contains : public Select{
 
 private:
 
   string str;
+
+  int column;
 
 public:
 
@@ -55,7 +57,7 @@ public:
 
   }
 
-  bool select(const Spreadsheet* sheet, int row){
+  bool select(const Spreadsheet* sheet, int row) const{
 	
 	return column != -1 && (sheet->cell_data(row, column)).find(str) != std::string::npos;
   }
@@ -137,7 +139,7 @@ public:
 
   bool select(const Spreadsheet* sheet, int row) const {
 
-    return !one->select(sheet,row)
+    return !one->select(sheet,row);
 
   }
 
