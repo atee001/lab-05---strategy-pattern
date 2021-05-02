@@ -58,20 +58,8 @@ public:
   }
 
   bool select(const Spreadsheet* sheet, const string& s){
-
-    if(column == -1) return false;
-
-    for(auto it : sheet->data){ //rows
-
-      for(auto jt : it->data.at(column)){ //column
-
-        if(jt.find(s) != std::string::npos) return true;
-
-      }
-    }
-   
-    return false;
-
+	
+	return column != -1 && (sheet->cell_data(row, column)).find(str) != std::string::npos;
   }
 
 
