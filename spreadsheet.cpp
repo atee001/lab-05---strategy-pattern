@@ -54,13 +54,15 @@ if(select == nullptr){
   }
 
   else{
-    for(int row = 0; row < data.size() && select->select(this,row); row++){
-      //if this is the right row
+    for(int row = 0; row < data.size(); row++){
+	if(select->select(this,row)){      
+//if this is the right row
             for(auto str : data.at(row)){
                //print out the data at that row (vector) that is correct
                 out << str << " ";
             }
          out << endl;
+	}	
      }
   }
 
